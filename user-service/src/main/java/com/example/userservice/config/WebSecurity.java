@@ -38,9 +38,10 @@ public class WebSecurity {
         daoAuthenticationProvider.setUserDetailsService(userService);
         daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder);
 
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
-        authenticationFilter.setAuthenticationManager(new ProviderManager(daoAuthenticationProvider));
-        return authenticationFilter;
+        return new AuthenticationFilter(
+                new ProviderManager(daoAuthenticationProvider),
+                userService,
+                env);
     }
 
 }

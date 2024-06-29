@@ -53,4 +53,10 @@ public class UserServiceImpl implements UserService {
                         true, true, true, true,
                         new ArrayList<>());
     }
+
+    @Override
+    public UserDto getUserDetailsByEmail(String email) {
+        return UserDto.of(userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found")));
+    }
 }

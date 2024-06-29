@@ -22,6 +22,10 @@ public class UserDto {
     private String userId;
     private Date createdAt;
 
+    private String decryptedPwd;
+
+    private String encryptedPwd;
+
     private List<ResponseOrder> orders = new ArrayList<>();
 
     public static UserEntity toEntity(UserDto dto) {
@@ -57,6 +61,7 @@ public class UserDto {
                 .name(user.getName())
                 .userId(user.getUserId())
                 .pwd(user.getEncryptedPwd())
+                .encryptedPwd(user.getEncryptedPwd())
                 .build();
     }
 }
