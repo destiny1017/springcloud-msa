@@ -27,6 +27,7 @@ public class WebSecurity {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/**").permitAll())
                 .addFilter(getAuthenticationFilter());
 

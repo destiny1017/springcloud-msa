@@ -9,3 +9,7 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
+
+token:
+  expiration_time: 86400000
+  secret: user_token
