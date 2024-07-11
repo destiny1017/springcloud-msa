@@ -4,8 +4,23 @@ server:
 spring:
   application:
     name: config-service
+  profiles:
+    active: native
   cloud:
     config:
       server:
+        native:
+          search-locations: D:/development/native-file-repo
         git:
           uri: https://github.com/destiny1017/springcloud-config
+  rabbitmq:
+    host: 122.39.31.98
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace, httpexchange, busrefresh

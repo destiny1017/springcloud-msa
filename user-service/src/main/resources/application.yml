@@ -6,6 +6,11 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password: 1234
+  rabbitmq:
+    host: 122.39.31.98
+    port: 5672
+    username: guest
+    password: guest
 #  h2:
 #    console:
 #      enabled: true
@@ -35,4 +40,4 @@ management:
     endpoints:
       web:
         exposure:
-          include: refresh, health, beans
+          include: refresh, health, beans, httptrace, httpexchange, busrefresh
