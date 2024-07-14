@@ -6,7 +6,7 @@ import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.jpa.UserRepository;
 import com.example.userservice.vo.ResponseOrder;
 import com.example.userservice.vo.ResponseUser;
-import feign.FeignException;
+import feign.codec.ErrorDecoder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final RestTemplate restTemplate;
     private final OrderServiceClient orderServiceClient;
+    private final ErrorDecoder feignErrorDecoder;
     private final Environment env;
 
     @Override
@@ -54,12 +55,15 @@ public class UserServiceImpl implements UserService {
 //        userDto.setOrders(orders.getBody());
 
         // Feign Client 사용
-        List<ResponseOrder> orders = null;
-        try {
-            orders = orderServiceClient.getOrders(userId);
-        } catch (FeignException e) {
-            log.error(e.getMessage());
-        }
+//        List<ResponseOrder> orders = null;
+//        try {
+//            orders = orderServiceClient.getOrders(userId);
+//        } catch (FeignException e) {
+//            log.error(e.getMessage());
+//        }
+
+        // Error decoder 적용
+        List<ResponseOrder> orders = orderServiceClient.getOrders(userId);
         userDto.setOrders(orders);
 
         return userDto;
