@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @Builder
@@ -15,6 +16,7 @@ public class OrderDto implements Serializable {
     private Integer qty;
     private Integer unitPrice;
     private Integer totalPrice;
+    private Date createdAt;
 
     private String orderId;
     private String userId;
@@ -25,6 +27,7 @@ public class OrderDto implements Serializable {
                 .qty(entity.getQty())
                 .unitPrice(entity.getUnitPrice())
                 .totalPrice(entity.getTotalPrice())
+                .createdAt(entity.getCreatedAt())
                 .orderId(entity.getOrderId())
                 .userId(entity.getUserId())
                 .build();
@@ -48,6 +51,7 @@ public class OrderDto implements Serializable {
                 .qty(dto.getQty())
                 .unitPrice(dto.getUnitPrice())
                 .totalPrice(dto.getTotalPrice())
+                .createdAt(dto.getCreatedAt())
                 .userId(dto.getUserId())
                 .build();
     }

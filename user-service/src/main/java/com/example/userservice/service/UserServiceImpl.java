@@ -3,13 +3,19 @@ package com.example.userservice.service;
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.jpa.UserRepository;
+import com.example.userservice.vo.ResponseOrder;
 import com.example.userservice.vo.ResponseUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +28,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final RestTemplate restTemplate;
+    private final Environment env;
 
     @Override
     public ResponseUser createUser(UserDto userDto) {
@@ -34,7 +42,15 @@ public class UserServiceImpl implements UserService {
     public UserDto getUserByUserId(String userId) {
         UserEntity user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return UserDto.of(user);
+        UserDto userDto = UserDto.of(user);
+        String orderUrl = String.format(env.getProperty("order-service.url"), userId);
+
+        ResponseEntity<List<ResponseOrder>> orders = restTemplate.exchange(
+                orderUrl, HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<ResponseOrder>>() {});
+        userDto.setOrders(orders.getBody());
+
+        return userDto;
     }
 
     public List<UserDto> getUserByAll() {
