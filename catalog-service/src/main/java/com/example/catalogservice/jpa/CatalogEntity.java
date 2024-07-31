@@ -27,4 +27,8 @@ public class CatalogEntity {
     @Column(nullable = false, updatable = false, insertable = false)
     @ColumnDefault(value = "CURRENT_TIMESTAMP")
     private Date createdAt;
+
+    public void updateStock(int value) {
+        this.stock = value;
+    }
 }
