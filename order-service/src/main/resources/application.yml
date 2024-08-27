@@ -5,7 +5,7 @@ spring:
     init:
       mode: always
   rabbitmq:
-    host: 122.39.31.98
+    host: dianglab.site
     port: 5672
     username: guest
     password: guest
