@@ -1,11 +1,6 @@
 spring:
   application:
     name: apigateway-service
-  rabbitmq:
-    host: dianglab.site
-    port: 5672
-    username: guest
-    password: guest
   profiles:
     active: native
   cloud:

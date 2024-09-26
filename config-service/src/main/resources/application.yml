@@ -16,8 +16,8 @@ spring:
   rabbitmq:
     host: dianglab.site
     port: 5672
-    username: guest
-    password: guest
+    username: '{cipher}AQBWWGPIh/TrF56bUKOgd0fY1iBn99rDiMx0h4ccM9d3sHWDEF5AV8qTiCLBwvRByhCHPAUHbbh6EDgEMjF8rpO/QhBws5L++KVZl3diZEmO9McniDJIcap2f3y0wExHc+j41pQ+58n4pm8Bc83RbhaRpN4xFAnTIKCPjLsOxlq9wsEzlvqix0E5jF5+lTi9hiZ7imGxYgjbyhJARjeBjRERywtwkseelXlGJeXcbhXkaBHVcZSogJ+2iBZ3K2ADMEWqdIJ5Vr7oIE05YHEwUWOE4glmonG5my/N8aNcM8wfYFbjzyxkP4RCETQeTuw4KhLjJCPV5sYVRsHx5HDxKxPWC3u1/R6FkzoJF+F4jLpBdhgwBwEIJnqxLEo09m7yQuc='
+    password: '{cipher}AQAAqW/WL8iQsT73y81+iUb/6WFqiZ2DXcgcKqzyU7T1Tr9ZF+C/1P9Vs6o4wWxphxT2K1c+al19gZnyiRc0dZliy5QBAejRQXPYAjmuxjiz5L5pYYvwdUJA5QKJFcgBDChM4kInrAjqJEnztPGBY4rKcRYO6krRJJ0DaxCJm9IgsTpsp678A3EEwLYtQhr10jABqgnR38yKPVlwWp2p4TxXbIRN034+5+pOGbfx7YhWO8SMLEdDrTMvf/F38w8RpYFRRL6GC0BKTI2922/ERe3TuZk1Sxs3oVV1sjMp+wKtSY2y3X7+ecm2jVnDJZYn0txSx8BvTviaxR/mYMn2LVexmGXTu/t4EQpSWUHjXzHOySzcvnMoXZ5L463wtSMwPfM='
 
 management:
   endpoints:
