@@ -1,0 +1,3 @@
+spring:
+  kafka:
+    bootstrap-servers: dianglab.site:9092
