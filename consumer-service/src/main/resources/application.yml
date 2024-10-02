@@ -1,3 +1,6 @@
 spring:
   kafka:
     bootstrap-servers: dianglab.site:9092
+
+server:
+  port: 18080

@@ -3,4 +3,4 @@ spring:
     bootstrap-servers: dianglab.site:9092
 
 server:
-  port: 8081
+  port: 18081

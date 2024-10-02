@@ -30,7 +30,7 @@ public class OrderController {
     public ResponseEntity<ResponseOrder> createOrder(@PathVariable("userId") String userId, @RequestBody RequestOrder order) {
         order.setUserId(userId);
         OrderDto dto = orderService.createOrder(OrderDto.of(order));
-        kafkaProducer.send("topic1", dto);
+        kafkaProducer.send("example_catalog_topic", dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(OrderDto.toResponse(dto));
     }
 
