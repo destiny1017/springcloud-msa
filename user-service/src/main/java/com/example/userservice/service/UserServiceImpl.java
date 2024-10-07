@@ -9,6 +9,8 @@ import com.example.userservice.vo.ResponseUser;
 import feign.codec.ErrorDecoder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,6 +35,7 @@ public class UserServiceImpl implements UserService {
     private final OrderServiceClient orderServiceClient;
     private final ErrorDecoder feignErrorDecoder;
     private final Environment env;
+    private final CircuitBreakerFactory circuitBreakerFactory;
 
     @Override
     public ResponseUser createUser(UserDto userDto) {
@@ -63,7 +66,10 @@ public class UserServiceImpl implements UserService {
 //        }
 
         // Error decoder 적용
-        List<ResponseOrder> orders = orderServiceClient.getOrders(userId);
+//        List<ResponseOrder> orders = orderServiceClient.getOrders(userId);
+        CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitBreaker1");
+        List<ResponseOrder> orders = circuitBreaker.run(() -> orderServiceClient.getOrders(userId),
+                throwable -> new ArrayList<>());
         userDto.setOrders(orders);
 
         return userDto;

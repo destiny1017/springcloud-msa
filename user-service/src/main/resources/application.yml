@@ -1,11 +1,11 @@
 spring:
   application:
     name: user-service
-  rabbitmq:
-    host: dianglab.site
-    port: 5672
-    username: guest
-    password: guest
+#  rabbitmq:
+#    host: dianglab.site
+#    port: 5672
+#    username: guest
+#    password: guest
 #  h2:
 #    console:
 #      enabled: true
